@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "TicTacToeGameModeBase.h"
 #include "Components/Button.h"
 #include "GameButton.generated.h"
 
@@ -29,6 +30,12 @@ public:
 	UButton* MainButton;
 
 private:
+
+	UPROPERTY()
+	ATicTacToeGameModeBase* CurrentGameMode;
+
+	UPROPERTY(EditAnywhere)
+	TEnumAsByte<EActivePlayer> OwnedPlayer = EActivePlayer::None;
 	
 	UPROPERTY(EditAnywhere)
 	UTexture2D* CurrentBackgroundImage;
