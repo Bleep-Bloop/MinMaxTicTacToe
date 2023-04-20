@@ -15,22 +15,18 @@ class TICTACTOE_API UGameButton : public UUserWidget
 	GENERATED_BODY()
 
 public:
+	
+	virtual void NativeConstruct() override;
+	
 	/**
-	 * @brief Changes the Sprite on each button
-	 * @IMPORTANT Remember to bind this to OnClick inside GameBoardUserWidget BP
+	 * @brief Changes the Sprite on each button.
+	 * @Note: Bound to OnClick inside GameButton::NativeConstruct().
 	 */
 	UFUNCTION(BlueprintCallable)
 	void ActivateWidget();
-
-	void Whydoesthiswork();
-
-	UFUNCTION()
-	void OnSelected(AActor* ClickedActor, FKey ButtonPressed);
-
+	
 	UPROPERTY(meta=(BindWidget))
 	UButton* MainButton;
-
-	virtual void NativeConstruct() override;
 
 private:
 
