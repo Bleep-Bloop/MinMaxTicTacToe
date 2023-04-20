@@ -3,11 +3,19 @@
 
 #include "GameButton.h"
 
-void UGameButton::ActivateWidget(bool bIsPlayerX)
+void UGameButton::NativeConstruct()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::MakeRandomColor(), "Button Pressed");
-	// ToDo:
-	/*	if (bIsX)
-	 *		this->Turn sprite to attached sprite
-	 */
+	Super::NativeConstruct();
+
+	MainButton->OnClicked.AddUniqueDynamic(this, &UGameButton::ActivateWidget);
+}
+
+void UGameButton::ActivateWidget()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::MakeRandomColor(), "UGameButton::ActivateWidget()");
+
+	// Cast<CustomGameMode>(GetWorld()->GetGameMode()).bXIsActivePlayer;
+	// if bXIsActivePlayer
+	// Sprite X elseSprite O
+
 }
