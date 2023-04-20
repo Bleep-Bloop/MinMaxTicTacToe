@@ -6,6 +6,14 @@
 #include "GameFramework/GameModeBase.h"
 #include "TicTacToeGameModeBase.generated.h"
 
+
+UENUM()
+enum EActivePlayer
+{
+	X UMETA(DisplayName = "Player X"),
+	O UMETA(DisplayName = "Player O"),
+};
+
 /**
  * 
  */
@@ -13,5 +21,10 @@ UCLASS()
 class TICTACTOE_API ATicTacToeGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+	virtual void BeginPlay() override;
+	
+	UPROPERTY(EditAnywhere)
+	TEnumAsByte<EActivePlayer> ActivePlayer;
 	
 };
