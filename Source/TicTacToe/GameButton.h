@@ -29,15 +29,7 @@ public:
 	UButton* MainButton;
 
 private:
-
-	// ToDo: Store in Game Manager
-	UPROPERTY(EditAnywhere)
-	UTexture2D* XImage;
-
-	// ToDo: Store in Game Manager
-	UPROPERTY(EditAnywhere)
-	UTexture2D* OImage;
-
+	
 	UPROPERTY(EditAnywhere)
 	UTexture2D* CurrentBackgroundImage;
 	
