@@ -10,6 +10,7 @@
 UENUM()
 enum EActivePlayer
 {
+	None UMETA(DisplayName = "UnOwned"),
 	X UMETA(DisplayName = "Player X"),
 	O UMETA(DisplayName = "Player O"),
 };
@@ -32,5 +33,9 @@ class TICTACTOE_API ATicTacToeGameModeBase : public AGameModeBase
 	
 	UPROPERTY(EditAnywhere)
 	UTexture2D* OImage;
+
+public:
+
+	EActivePlayer GetActivePlayer() const;
 	
 };
