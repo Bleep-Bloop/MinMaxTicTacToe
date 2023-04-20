@@ -34,5 +34,5 @@ private:
 	
 	UPROPERTY()
 	UUserWidget *_RootWidget;
-
+	
 };
