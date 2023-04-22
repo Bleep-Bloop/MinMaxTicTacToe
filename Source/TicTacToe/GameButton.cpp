@@ -31,4 +31,13 @@ void UGameButton::ActivateWidget()
 
 	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::MakeRandomColor(), FString::Printf(TEXT("Owned Player Set: %d"), OwnedPlayer.GetValue()));
 	
+	ChangeImage(CurrentGameMode->GetActivePlayerImage());
+	MainButton->SetIsEnabled(false);
+	
 }
+
+void UGameButton::ChangeImage(UTexture2D* PlayerImage)
+{
+	MainButton->WidgetStyle.Normal.SetResourceObject(PlayerImage);
+}
+

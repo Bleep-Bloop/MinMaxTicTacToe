@@ -25,9 +25,6 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable)
 	void ActivateWidget();
-	
-	UPROPERTY(meta=(BindWidget))
-	UButton* MainButton;
 
 private:
 
@@ -39,5 +36,10 @@ private:
 	
 	UPROPERTY(EditAnywhere)
 	UTexture2D* CurrentBackgroundImage;
+	
+	UPROPERTY(meta=(BindWidget))
+	UButton* MainButton;
+	
+	void ChangeImage(UTexture2D* PlayerImage);
 	
 };
