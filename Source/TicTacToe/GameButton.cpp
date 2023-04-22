@@ -33,6 +33,8 @@ void UGameButton::ActivateWidget()
 	
 	ChangeImage(CurrentGameMode->GetActivePlayerImage());
 	MainButton->SetIsEnabled(false);
+
+	CurrentGameMode->EndTurn();
 	
 }
 

@@ -40,5 +40,6 @@ public:
 
 	UTexture2D* GetActivePlayerImage() const;
 
+	void EndTurn();
 	
 };

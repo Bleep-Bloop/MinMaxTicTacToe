@@ -26,3 +26,13 @@ UTexture2D* ATicTacToeGameModeBase::GetActivePlayerImage() const
 		return OImage;
 	
 }
+
+void ATicTacToeGameModeBase::EndTurn()
+{
+	
+	bool bIsPlayerX = ActivePlayer == EActivePlayer::X;
+	ActivePlayer = (bIsPlayerX? ActivePlayer = EActivePlayer::O : ActivePlayer = EActivePlayer::X);
+
+	// ToDo: Check for win
+
+}
