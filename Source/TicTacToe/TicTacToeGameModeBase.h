@@ -27,15 +27,18 @@ class TICTACTOE_API ATicTacToeGameModeBase : public AGameModeBase
 	
 	UPROPERTY(EditAnywhere)
 	TEnumAsByte<EActivePlayer> ActivePlayer;
-	
+
 	UPROPERTY(EditAnywhere)
 	UTexture2D* XImage;
 	
 	UPROPERTY(EditAnywhere)
 	UTexture2D* OImage;
-
+	
 public:
 
 	EActivePlayer GetActivePlayer() const;
+
+	UTexture2D* GetActivePlayerImage() const;
+
 	
 };

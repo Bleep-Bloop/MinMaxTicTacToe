@@ -17,3 +17,12 @@ EActivePlayer ATicTacToeGameModeBase::GetActivePlayer() const
 {
 	return ActivePlayer;
 }
+
+UTexture2D* ATicTacToeGameModeBase::GetActivePlayerImage() const
+{
+	if(ActivePlayer == EActivePlayer::X)
+		return XImage;
+	else
+		return OImage;
+	
+}
