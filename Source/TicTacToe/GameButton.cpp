@@ -14,6 +14,7 @@ void UGameButton::NativeConstruct()
 	OwnedPlayer = EActivePlayer::None;
 	
 	CurrentGameMode = Cast<ATicTacToeGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+
 }
 
 void UGameButton::ActivateWidget()
@@ -28,8 +29,6 @@ void UGameButton::ActivateWidget()
 		OwnedPlayer = EActivePlayer::None;
 		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "ERROR - NO ACTIVE PLAYER");
 	}
-
-	GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::MakeRandomColor(), FString::Printf(TEXT("Owned Player Set: %d"), OwnedPlayer.GetValue()));
 	
 	ChangeImage(CurrentGameMode->GetActivePlayerImage());
 	MainButton->SetIsEnabled(false);
@@ -38,8 +37,14 @@ void UGameButton::ActivateWidget()
 	
 }
 
+EActivePlayer UGameButton::GetOwnedPlayer() const
+{
+	return OwnedPlayer;
+}
+
 void UGameButton::ChangeImage(UTexture2D* PlayerImage)
 {
 	MainButton->WidgetStyle.Normal.SetResourceObject(PlayerImage);
 }
+
 

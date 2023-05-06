@@ -26,6 +26,8 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void ActivateWidget();
 
+	EActivePlayer GetOwnedPlayer() const; // ToDo: Naming. Can be confused with GetOwningPlayer
+
 private:
 
 	UPROPERTY()
@@ -41,5 +43,6 @@ private:
 	UButton* MainButton;
 	
 	void ChangeImage(UTexture2D* PlayerImage);
+	
 	
 };
