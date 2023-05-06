@@ -51,5 +51,6 @@ public:
 	 */
 	UGameButton* BoardSpaces[3][3]; 
 	
+	void CheckForWinner() const;
 	
 };
