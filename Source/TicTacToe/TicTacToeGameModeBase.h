@@ -6,6 +6,8 @@
 #include "GameFramework/GameModeBase.h"
 #include "TicTacToeGameModeBase.generated.h"
 
+class UGameButton;
+
 
 UENUM()
 enum EActivePlayer
@@ -24,7 +26,8 @@ class TICTACTOE_API ATicTacToeGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 
 	virtual void BeginPlay() override;
-	
+
+	// Current turn's player
 	UPROPERTY(EditAnywhere)
 	TEnumAsByte<EActivePlayer> ActivePlayer;
 
@@ -41,5 +44,12 @@ public:
 	UTexture2D* GetActivePlayerImage() const;
 
 	void EndTurn();
+
+	/**
+	 * @brief All spots on the board organized by [row][column]
+	 * @note Buttons are added from GameBoardUserWidget
+	 */
+	UGameButton* BoardSpaces[3][3]; 
+	
 	
 };

@@ -3,13 +3,16 @@
 
 #include "TicTacToeGameModeBase.h"
 
+#include "GameButton.h"
 #include "BehaviorTree/BehaviorTreeTypes.h"
 
 void ATicTacToeGameModeBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// Start game with PlayerX
 	ActivePlayer = EActivePlayer::X;
+
 	
 }
 
@@ -29,9 +32,15 @@ UTexture2D* ATicTacToeGameModeBase::GetActivePlayerImage() const
 
 void ATicTacToeGameModeBase::EndTurn()
 {
-	
-	bool bIsPlayerX = ActivePlayer == EActivePlayer::X;
+
+	// ToDo:
+	bool bIsPlayerX = (ActivePlayer == EActivePlayer::X);
 	ActivePlayer = (bIsPlayerX? ActivePlayer = EActivePlayer::O : ActivePlayer = EActivePlayer::X);
+	
+
+}
+
+
 
 	// ToDo: Check for win
 
