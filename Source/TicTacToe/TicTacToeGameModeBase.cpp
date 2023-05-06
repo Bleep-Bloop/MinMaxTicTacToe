@@ -13,6 +13,11 @@ void ATicTacToeGameModeBase::BeginPlay()
 	// Start game with PlayerX
 	ActivePlayer = EActivePlayer::X;
 
+	// Setting Cursor -> ToDo: Shorten
+	if(GetWorld()->GetFirstPlayerController())
+	{
+		GetWorld()->GetFirstPlayerController()->bShowMouseCursor = true;
+	}
 	
 }
 
