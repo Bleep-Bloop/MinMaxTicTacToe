@@ -3,19 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "OpponentAI.h"
+#include "SpaceState.h"
 #include "GameFramework/GameModeBase.h"
 #include "TicTacToeGameModeBase.generated.h"
 
 class UGameButton;
-
-
-UENUM()
-enum EActivePlayer
-{
-	None UMETA(DisplayName = "UnOwned"),
-	X UMETA(DisplayName = "Player X"),
-	O UMETA(DisplayName = "Player O"),
-};
 
 /**
  * 
@@ -25,11 +18,13 @@ class TICTACTOE_API ATicTacToeGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 
+	ATicTacToeGameModeBase();
+
 	virtual void BeginPlay() override;
 
 	// Current turn's player
-	UPROPERTY(EditAnywhere)
-	TEnumAsByte<EActivePlayer> ActivePlayer;
+	//UPROPERTY(EditAnywhere) // have to comment out
+	USpaceState::EActivePlayer ActivePlayer;
 
 	UPROPERTY(EditAnywhere)
 	UTexture2D* XImage;
@@ -39,7 +34,7 @@ class TICTACTOE_API ATicTacToeGameModeBase : public AGameModeBase
 	
 public:
 
-	EActivePlayer GetActivePlayer() const;
+	USpaceState::EActivePlayer GetActivePlayer() const;
 
 	UTexture2D* GetActivePlayerImage() const;
 
@@ -49,8 +44,25 @@ public:
 	 * @brief All spots on the board organized by [row][column]
 	 * @note Buttons are added from GameBoardUserWidget
 	 */
-	UGameButton* BoardSpaces[3][3]; 
+	UGameButton* BoardSpaces[3][3];
+
+	/**
+	 * @brief All spots on the board and their respective states
+	 */
+	USpaceState::EActivePlayer BoardSpaceStates[3][3];
 	
 	void CheckForWinner() const;
+	
+	UPROPERTY()
+	UOpponentAI* OpponentPlayer;
+
+	// Checks and sets all board spaces
+	// used for passing to UOpponentAI
+	void UpdateBoardSpaceArray();
+	
+	
+
+	//void TestFillStateArray(); // ToDo: Change name to UpdateStateArray at end of turn
+	
 	
 };
