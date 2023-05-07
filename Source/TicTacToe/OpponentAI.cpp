@@ -88,9 +88,7 @@ int UOpponentAI::EvaluateBoard(USpaceState::EActivePlayer Spaces[3][3])
 
 int UOpponentAI::MiniMax(USpaceState::EActivePlayer Spaces[3][3], int Depth, bool bIsMax)
 {
-
-	//GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::MakeRandomColor(), "MiniMAx");
-
+	
 	int Score = EvaluateBoard(Spaces);
 
 	// If the Maximizer has won the game, return their evaluated score
@@ -114,8 +112,6 @@ int UOpponentAI::MiniMax(USpaceState::EActivePlayer Spaces[3][3], int Depth, boo
 	// If Maximizer's turn
 	if(bIsMax == true)
 	{
-
-		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::MakeRandomColor(), "IF");
 		
 		int Best = -1000;
 
@@ -142,7 +138,7 @@ int UOpponentAI::MiniMax(USpaceState::EActivePlayer Spaces[3][3], int Depth, boo
 	}
 	else
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::MakeRandomColor(), "ELSE");
+
 		int Best = 1000;
 
 		// Traverse all cells
