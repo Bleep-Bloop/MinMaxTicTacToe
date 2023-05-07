@@ -21,6 +21,8 @@ void ATicTacToeVsAIGameMode::EndTurn()
 
 void ATicTacToeVsAIGameMode::AITurn()
 {
+	UpdateBoardSpaceArray();
+	
 	if(ActivePlayer == USpaceState::EActivePlayer::O)
 	{
 		FMove NextMove = OpponentPlayer->FindBestMove(BoardSpaceStates);

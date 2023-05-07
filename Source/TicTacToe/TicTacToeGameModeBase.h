@@ -54,6 +54,7 @@ public:
 
 	/**
 	 * @brief All spots on the board and their respective states
+	 * @note used by OpponentAI
 	 */
 	USpaceState::EActivePlayer BoardSpaceStates[3][3];
 	
