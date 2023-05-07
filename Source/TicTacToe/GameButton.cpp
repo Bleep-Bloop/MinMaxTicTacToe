@@ -11,7 +11,7 @@ void UGameButton::NativeConstruct()
 
 	MainButton->OnClicked.AddUniqueDynamic(this, &UGameButton::ActivateWidget);
 
-	OwnedPlayer = EActivePlayer::None;
+	CurrentActivePlayer = USpaceState::EActivePlayer::None;
 	
 	CurrentGameMode = Cast<ATicTacToeGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
 
@@ -20,13 +20,13 @@ void UGameButton::NativeConstruct()
 void UGameButton::ActivateWidget()
 {
 
-	if(CurrentGameMode->GetActivePlayer() == EActivePlayer::X)
-		OwnedPlayer = EActivePlayer::X;
-	else if (CurrentGameMode->GetActivePlayer() == EActivePlayer::O)
-		OwnedPlayer = EActivePlayer::O;
+	if(CurrentGameMode->GetActivePlayer() == USpaceState::EActivePlayer::X)
+		CurrentActivePlayer = USpaceState::EActivePlayer::X;
+	else if (CurrentGameMode->GetActivePlayer() == USpaceState::EActivePlayer::O)
+		CurrentActivePlayer = USpaceState::EActivePlayer::O;
 	else
 	{
-		OwnedPlayer = EActivePlayer::None;
+		CurrentActivePlayer = USpaceState::EActivePlayer::None;
 		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, "ERROR - NO ACTIVE PLAYER");
 	}
 	
@@ -37,10 +37,17 @@ void UGameButton::ActivateWidget()
 	
 }
 
-EActivePlayer UGameButton::GetOwnedPlayer() const
+USpaceState::EActivePlayer UGameButton::GetCurrentActivePlayer()
 {
-	return OwnedPlayer;
+	return CurrentActivePlayer;
 }
+
+// ToDo: Use this when setting everything else
+void UGameButton::SetActivePlayer(USpaceState::EActivePlayer NewOwner)
+{
+	CurrentActivePlayer = NewOwner;
+}
+
 
 void UGameButton::ChangeImage(UTexture2D* PlayerImage)
 {

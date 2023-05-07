@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "TicTacToeGameModeBase.h"
+#include "SpaceState.h"
 #include "Components/Button.h"
 #include "GameButton.generated.h"
 
@@ -25,20 +26,18 @@ public:
 	 */
 	UFUNCTION(BlueprintCallable)
 	void ActivateWidget();
-
-	EActivePlayer GetOwnedPlayer() const; // ToDo: Naming. Can be confused with GetOwningPlayer
+	
+	USpaceState::EActivePlayer GetCurrentActivePlayer();
+	
+	void SetActivePlayer(USpaceState::EActivePlayer NewOwner);
 
 private:
 
 	UPROPERTY()
 	ATicTacToeGameModeBase* CurrentGameMode;
+	
+	USpaceState::EActivePlayer CurrentActivePlayer;
 
-	UPROPERTY(EditAnywhere)
-	TEnumAsByte<EActivePlayer> OwnedPlayer = EActivePlayer::None;
-	
-	UPROPERTY(EditAnywhere)
-	UTexture2D* CurrentBackgroundImage;
-	
 	UPROPERTY(meta=(BindWidget))
 	UButton* MainButton;
 	
