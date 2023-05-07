@@ -61,8 +61,4 @@ public:
 	void UpdateBoardSpaceArray();
 	
 	
-
-	//void TestFillStateArray(); // ToDo: Change name to UpdateStateArray at end of turn
-	
-	
 };
