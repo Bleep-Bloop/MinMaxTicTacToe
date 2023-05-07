@@ -13,7 +13,7 @@ bool UOpponentAI::HasMovesLeft(USpaceState::EActivePlayer Spaces[3][3])
 			return Spaces[i][j] == USpaceState::EActivePlayer::None;
 		}
 	}
-	return false; ////
+	return false; 
 }
 
 int UOpponentAI::EvaluateBoard(USpaceState::EActivePlayer Spaces[3][3])
@@ -25,13 +25,9 @@ int UOpponentAI::EvaluateBoard(USpaceState::EActivePlayer Spaces[3][3])
 			Spaces[Row][1] == Spaces[Row][2])
 		{
 			if(Spaces[Row][0] == USpaceState::EActivePlayer::X)
-			{
 				return +10;
-			}
 			else if(Spaces[Row][0] == USpaceState::EActivePlayer::O)
-			{
 				return -10;
-			}
 		}
 	}
 
@@ -42,13 +38,9 @@ int UOpponentAI::EvaluateBoard(USpaceState::EActivePlayer Spaces[3][3])
 			Spaces[1][Column] == Spaces[2][Column])
 		{
 			if(Spaces[0][Column] == USpaceState::EActivePlayer::X)
-			{
 				return +10;
-			}
 			else if(Spaces[0][Column] == USpaceState::EActivePlayer::O)
-			{
 				return -10;
-			}
 		}
 	}
 	
@@ -57,13 +49,9 @@ int UOpponentAI::EvaluateBoard(USpaceState::EActivePlayer Spaces[3][3])
 		Spaces[1][1] == Spaces[2][2])
 	{
 		if(Spaces[0][0] == USpaceState::EActivePlayer::X)
-		{
 			return +10;
-		}
 		else if(Spaces[0][0] == USpaceState::EActivePlayer::O)
-		{
 			return -10;
-		}
 	}
 
 	// Check Diagonal Bottom Left -> Top Right
@@ -71,18 +59,12 @@ int UOpponentAI::EvaluateBoard(USpaceState::EActivePlayer Spaces[3][3])
 		Spaces[1][1] == Spaces[2][0])
 	{
 		if(Spaces[0][2] == USpaceState::EActivePlayer::X)
-		{
 			return +10;
-		}
 		else if(Spaces[0][2] == USpaceState::EActivePlayer::O)
-		{
 			return -10;
-		}
 	}
-
-	// If no winners, return 0;
-	return 0;
 	
+	return 0;
 	
 }
 
@@ -93,21 +75,15 @@ int UOpponentAI::MiniMax(USpaceState::EActivePlayer Spaces[3][3], int Depth, boo
 
 	// If the Maximizer has won the game, return their evaluated score
 	if(Score == 10)
-	{
 		return Score;
-	}
 
 	// if the Minimizer has won the game, return their evaluated score
 	if(Score == -10)
-	{
 		return Score;
-	}
 
 	// If there are no more moves and no winner then it's a tie
 	if(HasMovesLeft(Spaces) == false) // !
-	{
 		return 0;
-	}
 
 	// If Maximizer's turn
 	if(bIsMax == true)
@@ -127,7 +103,7 @@ int UOpponentAI::MiniMax(USpaceState::EActivePlayer Spaces[3][3], int Depth, boo
 					Spaces[i][j] = USpaceState::EActivePlayer::X;
 
 					// Call MiniMax recursively and choose the maximum value
-					Best = std::max(Best, MiniMax(Spaces, Depth + 1, !bIsMax)); // ToDo: DOUBLE CHECK WHERE DEPTH IS ACTUALLY USED
+					Best = std::max(Best, MiniMax(Spaces, Depth + 1, !bIsMax));
 
 					// Undo the move
 					Spaces[i][j] = USpaceState::EActivePlayer::None;
@@ -153,8 +129,8 @@ int UOpponentAI::MiniMax(USpaceState::EActivePlayer Spaces[3][3], int Depth, boo
 					Spaces[i][j] = USpaceState::EActivePlayer::O;
 
 					// Call the Minimax recursively and choose the minimum value
-					Best = std::min(Best, MiniMax(Spaces, Depth + 1, !bIsMax));
-
+					 Best = std::min(Best, MiniMax(Spaces, Depth + 1, !bIsMax));
+					
 					// Undo the move
 					Spaces[i][j] = USpaceState::EActivePlayer::None;
 				}
@@ -182,10 +158,10 @@ int UOpponentAI::MiniMax(USpaceState::EActivePlayer Spaces[3][3], int Depth, boo
 			if(Spaces[i][j] == USpaceState::EActivePlayer::None)
 			{
 				// Make the move.
-				Spaces[i][j] = USpaceState::EActivePlayer::X; // the website has player (x) here I feel like I should change to O because enemy but going to test by placing 2 x in a row
+				Spaces[i][j] = USpaceState::EActivePlayer::X; 
 
 				// Compute evaluation function for this move.
-				int MoveValue = MiniMax(Spaces, 0, false); // FALSE WHERE WHAT IS IT???
+				int MoveValue = MiniMax(Spaces, 0, false); 
 				
 				// Undo the move
 				Spaces[i][j] = USpaceState::EActivePlayer::None;
@@ -201,11 +177,9 @@ int UOpponentAI::MiniMax(USpaceState::EActivePlayer Spaces[3][3], int Depth, boo
 		}
 	}
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("NextMove Row: %i Column: %i"), BestMove.Row, BestMove.Column));
+	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("NextMove Row: %i Column: %i"), BestMove.Row, BestMove.Column));
 	
 	return BestMove;
 	
-	
 }
-
 
