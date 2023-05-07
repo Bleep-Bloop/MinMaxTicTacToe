@@ -16,14 +16,14 @@ class UGameButton;
 UCLASS()
 class TICTACTOE_API ATicTacToeGameModeBase : public AGameModeBase
 {
+protected:
 	GENERATED_BODY()
 
 	ATicTacToeGameModeBase();
-
+	
 	virtual void BeginPlay() override;
 
 	// Current turn's player
-	//UPROPERTY(EditAnywhere) // have to comment out
 	USpaceState::EActivePlayer ActivePlayer;
 
 	UPROPERTY(EditAnywhere)
@@ -32,13 +32,19 @@ class TICTACTOE_API ATicTacToeGameModeBase : public AGameModeBase
 	UPROPERTY(EditAnywhere)
 	UTexture2D* OImage;
 	
+	void CheckForWinner() const;
+	
+	// Checks and sets all board spaces
+	// used for passing to UOpponentAI
+	void UpdateBoardSpaceArray();
+
 public:
 
 	USpaceState::EActivePlayer GetActivePlayer() const;
 
 	UTexture2D* GetActivePlayerImage() const;
 
-	void EndTurn();
+	virtual void EndTurn();
 
 	/**
 	 * @brief All spots on the board organized by [row][column]
@@ -51,14 +57,6 @@ public:
 	 */
 	USpaceState::EActivePlayer BoardSpaceStates[3][3];
 	
-	void CheckForWinner() const;
-	
-	UPROPERTY()
-	UOpponentAI* OpponentPlayer;
 
-	// Checks and sets all board spaces
-	// used for passing to UOpponentAI
-	void UpdateBoardSpaceArray();
-	
 	
 };
