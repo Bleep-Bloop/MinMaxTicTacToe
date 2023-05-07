@@ -8,7 +8,8 @@
 
 ATicTacToeGameModeBase::ATicTacToeGameModeBase()
 {
-	OpponentPlayer = CreateDefaultSubobject<UOpponentAI>("Enemy Player AI");
+	// ToDo: Move to New Ai gamemode
+	//OpponentPlayer = CreateDefaultSubobject<UOpponentAI>("Enemy Player AI");
 }
 
 void ATicTacToeGameModeBase::BeginPlay()
@@ -52,15 +53,6 @@ void ATicTacToeGameModeBase::EndTurn()
 	// ToDo: Re-Write
 	bool bIsPlayerX = (ActivePlayer == USpaceState::EActivePlayer::X); 
 	ActivePlayer = (bIsPlayerX? ActivePlayer = USpaceState::EActivePlayer::O : ActivePlayer = USpaceState::EActivePlayer::X);
-	
-
-	// Find AI's move
-	if(ActivePlayer == USpaceState::EActivePlayer::O)
-	{
-		FMove NextMove = OpponentPlayer->FindBestMove(BoardSpaceStates);
-		if(BoardSpaces[NextMove.Row][NextMove.Column])
-			BoardSpaces[NextMove.Row][NextMove.Column]->ActivateWidget();
-	}
 	
 }
 
