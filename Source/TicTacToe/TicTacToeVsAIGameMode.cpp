@@ -14,8 +14,13 @@ void ATicTacToeVsAIGameMode::EndTurn()
 {
 	Super::EndTurn();
 
-	// Call Ai's turn
-	AITurn();
+	
+	if(CheckForWinner() == false)
+	{
+		// Call Ai's turn
+		AITurn();
+	}
+
 	
 }
 

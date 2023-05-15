@@ -50,7 +50,7 @@ void ATicTacToeGameModeBase::EndTurn()
 }
 
 
-void ATicTacToeGameModeBase::CheckForWinner() const
+bool ATicTacToeGameModeBase::CheckForWinner() const
 {
 	//USpaceState::EActivePlayer Winner = USpaceState::EActivePlayer::None;
 
@@ -89,9 +89,12 @@ void ATicTacToeGameModeBase::CheckForWinner() const
 	{
 		if(BoardSpaces[0][i]->GetCurrentActivePlayer() == BoardSpaces[1][i]->GetCurrentActivePlayer() && BoardSpaces[1][i]->GetCurrentActivePlayer() == BoardSpaces[2][i]->GetCurrentActivePlayer())
 		{
-			if(BoardSpaces[1][i]->GetCurrentActivePlayer() == USpaceState::EActivePlayer::X)
+			if(BoardSpaces[0][i]->GetCurrentActivePlayer() == USpaceState::EActivePlayer::X)
+			{
 				UGameplayStatics::OpenLevel(GetWorld(), "Map_XWin");
-			else if(BoardSpaces[1][i]->GetCurrentActivePlayer() == USpaceState::EActivePlayer::O)
+				return true;
+			}
+			else if(BoardSpaces[0][i]->GetCurrentActivePlayer() == USpaceState::EActivePlayer::O)
 				UGameplayStatics::OpenLevel(GetWorld(), "Map_OWin");
 		}
 	}
@@ -107,6 +110,8 @@ void ATicTacToeGameModeBase::CheckForWinner() const
 	}
 	if(ActiveSpaces == 9)
 		UGameplayStatics::OpenLevel(GetWorld(), "Map_Tie");
+
+	return false;
 	
 }
 

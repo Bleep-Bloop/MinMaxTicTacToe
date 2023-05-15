@@ -129,7 +129,7 @@ int UOpponentAI::MiniMax(USpaceState::EActivePlayer Spaces[3][3], int Depth, boo
 					Spaces[i][j] = USpaceState::EActivePlayer::O;
 
 					// Call the Minimax recursively and choose the minimum value
-					 Best = std::min(Best, MiniMax(Spaces, Depth + 1, !bIsMax));
+					 Best = std::min(Best, MiniMax(Spaces, Depth - 1, !bIsMax));
 					
 					// Undo the move
 					Spaces[i][j] = USpaceState::EActivePlayer::None;

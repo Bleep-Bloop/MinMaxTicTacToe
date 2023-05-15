@@ -32,7 +32,7 @@ protected:
 	UPROPERTY(EditAnywhere)
 	UTexture2D* OImage;
 	
-	void CheckForWinner() const;
+	bool CheckForWinner() const;
 	
 	// Checks and sets all board spaces
 	// used for passing to UOpponentAI
